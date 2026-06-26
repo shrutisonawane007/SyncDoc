@@ -339,17 +339,17 @@ function BlockItem({ block, upsertBlock, isReadOnly, onTriggerAutocomplete }: Bl
 
       {/* autocomplete trigger */}
       {!isReadOnly && localContent.trim().length > 3 && (
-        <div className="flex justify-end h-0 overflow-visible opacity-0 group-hover/item:opacity-100 transition-opacity select-none">
+        <div className="flex justify-end mt-1.5 opacity-0 group-hover/item:opacity-100 group-focus-within/item:opacity-100 transition-opacity select-none">
           <button
             onClick={handleAIAutocomplete}
             disabled={aiLoading}
-            className="z-10 p-1 bg-orange-50 hover:bg-orange-100 text-orange-600 hover:text-orange-700 rounded-lg flex items-center gap-1 text-[10px] font-semibold cursor-pointer border border-orange-200/50 shadow-sm mr-2 mt-0.5"
+            className="z-10 px-2.5 py-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-md flex items-center gap-1.5 text-[10px] font-bold cursor-pointer shadow-sm hover:shadow-md transition-all active:scale-95 border-none"
             title="Autocomplete text with Gemini"
           >
             {aiLoading ? (
-              <div className="h-3 w-3 animate-spin rounded-full border-2 border-orange-600 border-t-transparent" />
+              <div className="h-3 w-3 animate-spin rounded-full border-2 border-white border-t-transparent" />
             ) : (
-              <Sparkles className="h-3.5 w-3.5" />
+              <Sparkles className="h-3 w-3 text-white animate-pulse" />
             )}
             <span>Autocomplete</span>
           </button>
