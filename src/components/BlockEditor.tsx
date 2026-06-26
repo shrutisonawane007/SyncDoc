@@ -316,7 +316,7 @@ function BlockItem({ block, upsertBlock, isReadOnly, onTriggerAutocomplete }: Bl
           onChange={handleChange}
           onBlur={handleBlur}
           disabled={isReadOnly}
-          className={`w-full bg-transparent resize-none border-none py-1.5 focus:outline-none focus:ring-0 select-text ${getStyleClasses()} ${
+          className={`w-full bg-transparent resize-none overflow-hidden border-none py-1.5 focus:outline-none focus:ring-0 select-text ${getStyleClasses()} ${
             block.type === 'list-item' ? 'pl-6' : 'px-1'
           } ${isReadOnly ? 'cursor-default' : ''}`}
           placeholder={

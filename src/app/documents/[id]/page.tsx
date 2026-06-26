@@ -402,7 +402,7 @@ export default function DocumentWorkspace() {
                 Collaborators
               </h3>
               
-              <div className="space-y-2 max-h-[15vh] lg:max-h-none overflow-y-auto">
+              <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs py-1">
                   <div className="flex items-center gap-2">
                     <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">
