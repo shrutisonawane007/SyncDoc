@@ -392,7 +392,7 @@ export default function DocumentWorkspace() {
       {/* Main Multi-Panel Workspace */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-full relative z-10">
         {/* Left Panel: Collaborators list (collapsible on mobile) */}
-        <aside className={`w-full lg:w-64 bg-white/90 backdrop-blur-sm border-b lg:border-b-0 lg:border-r border-card-border p-5 flex flex-col justify-between shrink-0 overflow-y-auto lg:max-h-none ${
+        <aside className={`w-full lg:w-64 bg-white/90 backdrop-blur-sm border-b lg:border-b-0 lg:border-r border-card-border p-5 pb-20 lg:pb-5 flex flex-col justify-between shrink-0 overflow-y-auto lg:max-h-none ${
           activeMobileTab === 'collaborators' ? 'flex flex-1 max-h-none' : 'hidden lg:flex'
         }`}>
           <div className="space-y-6">
@@ -474,7 +474,7 @@ export default function DocumentWorkspace() {
         </aside>
 
         {/* Middle Column: Document Editor Canvas */}
-        <main className={`flex-1 overflow-y-auto px-6 py-8 sm:px-12 bg-white/95 relative z-10 lg:max-h-none ${
+        <main className={`flex-1 overflow-y-auto px-6 py-8 pb-20 sm:px-12 bg-white/95 relative z-10 lg:max-h-none ${
           activeMobileTab === 'editor' ? 'block' : 'hidden lg:block'
         }`}>
           <div className="max-w-3xl mx-auto space-y-8">
@@ -529,7 +529,7 @@ export default function DocumentWorkspace() {
           </div>
 
           {/* Tab Content Panel */}
-          <div className="flex-1 overflow-y-auto p-5">
+          <div className="flex-1 overflow-y-auto p-5 pb-20 lg:pb-5">
             {rightPanelTab === 'versions' ? (
               <VersionHistory
                 docId={docId}
@@ -619,8 +619,8 @@ export default function DocumentWorkspace() {
         </aside>
       </div>
 
-      {/* Sticky Mobile Tab Navigation Bar */}
-      <div className="lg:hidden sticky bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-card-border py-2.5 px-4 flex items-center justify-around z-40 shadow-[0_-2px_10px_rgba(0,0,0,0.03)] shrink-0 select-none">
+      {/* Fixed Mobile Tab Navigation Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-card-border py-3 px-4 flex items-center justify-around z-40 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] select-none">
         <button
           onClick={() => setActiveMobileTab('editor')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold transition-colors cursor-pointer ${
