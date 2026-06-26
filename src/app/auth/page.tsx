@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { Mail, Lock, User, CheckCircle, FileText } from 'lucide-react';
+import { Mail, Lock, User, CheckCircle, FileText, ArrowLeft } from 'lucide-react';
 
 export default function AuthPage() {
   const { user, loading, login, signup } = useAuth();
@@ -16,6 +16,7 @@ export default function AuthPage() {
   
   const [error, setError] = useState<string | null>(null);
   const [formLoading, setFormLoading] = useState(false);
+  const [mobileView, setMobileView] = useState<'landing' | 'auth'>('landing');
 
   // Redirect if already logged in
   useEffect(() => {
@@ -68,7 +69,9 @@ export default function AuthPage() {
   return (
     <div className="flex-1 flex flex-col md:flex-row min-h-screen bg-background">
       {/* Visual branding side panel */}
-      <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-orange-50/80 via-slate-50 to-orange-100/50 border-r border-slate-200 p-12 flex-col justify-between text-slate-900 relative overflow-hidden">
+      <div className={`w-full md:w-1/2 bg-gradient-to-br from-orange-50/80 via-slate-50 to-orange-100/50 border-b md:border-b-0 md:border-r border-slate-200 p-8 sm:p-12 md:p-12 flex-col justify-between text-slate-900 relative overflow-hidden ${
+        mobileView === 'landing' ? 'flex min-h-screen md:min-h-0' : 'hidden md:flex'
+      }`}>
         {/* Simple ambient light orange gradient color background */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-orange-200/30 blur-3xl" />
@@ -83,7 +86,7 @@ export default function AuthPage() {
           <span>SyncDoc</span>
         </div>
 
-        <div className="my-auto max-w-md z-10 p-8 glass-panel bg-white/80 rounded-3xl border border-white/80 shadow-xl space-y-6 animate-slide-up opacity-0 delay-1">
+        <div className="my-auto max-w-md z-10 p-6 sm:p-8 glass-panel bg-white/80 rounded-3xl border border-white/80 shadow-xl space-y-6 animate-slide-up opacity-0 delay-1">
           <h1 className="text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-slate-950">
             Write together.<br />Work anywhere.
           </h1>
@@ -117,18 +120,52 @@ export default function AuthPage() {
               <span className="text-slate-700 font-medium text-xs sm:text-sm">Built-in AI helper to summarize and autocomplete text</span>
             </div>
           </div>
+
+          {/* Mobile landing buttons */}
+          <div className="pt-4 flex flex-col sm:flex-row gap-3 z-10 md:hidden w-full">
+            <button
+              onClick={() => {
+                setIsLogin(true);
+                setMobileView('auth');
+              }}
+              className="w-full py-3 px-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-xl text-center text-sm shadow-sm transition-colors cursor-pointer"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => {
+                setIsLogin(false);
+                setMobileView('auth');
+              }}
+              className="w-full py-3 px-4 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-center text-sm transition-colors cursor-pointer"
+            >
+              Create Account
+            </button>
+          </div>
         </div>
 
-        <div className="text-xs text-slate-400 z-10 font-mono animate-slide-up opacity-0 delay-2">
+        <div className="text-xs text-slate-400 z-10 font-mono animate-slide-up opacity-0 delay-2 mt-6 md:mt-0">
           SyncDoc Project • Built by Shruti Sonawane
         </div>
       </div>
 
       {/* Forms Section */}
-      <div className="flex-1 flex items-center justify-center p-8 sm:p-12 md:p-16">
+      <div className={`flex-1 flex items-center justify-center p-8 sm:p-12 md:p-16 ${
+        mobileView === 'auth' ? 'flex' : 'hidden md:flex'
+      }`}>
         <div className="w-full max-w-md space-y-8 animate-fade-in">
+          {/* Mobile Back Button */}
+          <button
+            type="button"
+            onClick={() => setMobileView('landing')}
+            className="md:hidden flex items-center gap-1.5 text-slate-500 hover:text-slate-800 text-xs font-semibold mb-6 cursor-pointer transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to features</span>
+          </button>
+
           <div>
-            <div className="md:hidden flex items-center gap-2 font-semibold text-lg text-orange-600 mb-8">
+            <div className="md:hidden flex items-center gap-2 font-semibold text-lg text-orange-600 mb-6">
               <FileText className="h-6 w-6" />
               <span>SyncDoc</span>
             </div>

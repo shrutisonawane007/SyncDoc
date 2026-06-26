@@ -90,7 +90,7 @@ export default function BlockEditor({
             <div key={block.id} className="group relative flex items-start gap-3">
               {/* Left drag-like controls (hidden for viewers) */}
               {!isReadOnly && (
-                <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 pt-2 select-none">
+                <div className="flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity shrink-0 pt-2 select-none">
                   <button
                     onClick={() => handleMoveBlock(idx, 'up')}
                     disabled={idx === 0}
@@ -122,7 +122,7 @@ export default function BlockEditor({
 
               {/* Right side contextual options (hidden for viewers) */}
               {!isReadOnly && (
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 pt-2">
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity shrink-0 pt-2">
                   {/* Block Type selector */}
                   <select
                     value={block.type}
