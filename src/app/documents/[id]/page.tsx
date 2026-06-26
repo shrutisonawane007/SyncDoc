@@ -21,10 +21,10 @@ export default function DocumentWorkspace() {
   const [activeMobileTab, setActiveMobileTab] = useState<'editor' | 'collaborators' | 'timeline' | 'ai'>('editor');
   
   interface Collaborator {
-    id: string;
+    user_id: string;
     email: string;
     name: string;
-    role: 'editor' | 'viewer';
+    role: 'owner' | 'editor' | 'viewer';
   }
   const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
   const [collabEmail, setCollabEmail] = useState('');
@@ -173,7 +173,7 @@ export default function DocumentWorkspace() {
     );
   }
 
-  const role = doc.ownerId === user.id ? 'owner' : doc.role || 'viewer';
+  const role = (doc.ownerId === user.id ? 'owner' : doc.role || 'viewer') as 'owner' | 'editor' | 'viewer';
   const isReadOnly = role === 'viewer';
 
   const handleTitleBlur = () => {
