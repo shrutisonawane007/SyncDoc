@@ -11,7 +11,9 @@ export function useDocument(docId: string, currentUserId: string | null) {
     const unsubscribe = syncEngine.registerStatusListener((status) => {
       setSyncStatus(status);
     });
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   // poll sync every 5s if online

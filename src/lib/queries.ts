@@ -50,12 +50,12 @@ export interface VersionSnapshot {
 
 // --- User Management ---
 export async function getUserByEmail(email: string): Promise<User | null> {
-  const result = await query('SELECT * FROM users WHERE email = $1', [email]);
+  const result = await query<User>('SELECT * FROM users WHERE email = $1', [email]);
   return result.rows[0] || null;
 }
 
 export async function createUser(name: string, email: string, passwordHash: string): Promise<User> {
-  const result = await query(
+  const result = await query<User>(
     'INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3) RETURNING *',
     [name, email, passwordHash]
   );
