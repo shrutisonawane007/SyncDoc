@@ -222,6 +222,10 @@ function BlockItem({ block, upsertBlock, isReadOnly, onTriggerAutocomplete }: Bl
     const val = e.target.value;
     setLocalContent(val);
 
+    // Instantly resize height inline to avoid lag on mobile screens
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
@@ -304,7 +308,7 @@ function BlockItem({ block, upsertBlock, isReadOnly, onTriggerAutocomplete }: Bl
 
   return (
     <div className="relative group/item flex flex-col w-full">
-      <div className="relative flex items-center w-full">
+      <div className="relative flex items-start w-full">
         {block.type === 'list-item' && (
           <span className="text-slate-400 absolute left-2 top-2.5 font-bold text-lg select-none">•</span>
         )}
@@ -315,6 +319,10 @@ function BlockItem({ block, upsertBlock, isReadOnly, onTriggerAutocomplete }: Bl
           value={localContent}
           onChange={handleChange}
           onBlur={handleBlur}
+          onFocus={(e) => {
+            // Keep the active typing block positioned inside the viewable window
+            e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }}
           disabled={isReadOnly}
           className={`w-full bg-transparent resize-none overflow-hidden border-none py-1.5 focus:outline-none focus:ring-0 select-text ${getStyleClasses()} ${
             block.type === 'list-item' ? 'pl-6' : 'px-1'
