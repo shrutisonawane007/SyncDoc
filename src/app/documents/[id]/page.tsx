@@ -309,11 +309,11 @@ export default function DocumentWorkspace() {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-br from-orange-50/80 via-slate-50 to-orange-100/50 relative overflow-hidden">
-      {/* Simple ambient light orange gradient color background */}
+      {/* Simple ambient light orange/gold gradient color background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-orange-200/30 blur-3xl" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-orange-100/40 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(249,115,22,0.02),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(216,180,106,0.02),transparent_40%)]" />
       </div>
       {/* Top Navbar */}
       <header className="sticky top-0 z-30 glass-panel border-b border-card-border px-4 py-3 flex items-center justify-between">
@@ -392,12 +392,12 @@ export default function DocumentWorkspace() {
       {/* Main Multi-Panel Workspace */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-full relative z-10">
         {/* Left Panel: Collaborators list (collapsible on mobile) */}
-        <aside className={`w-full lg:w-64 bg-white/90 backdrop-blur-sm border-b lg:border-b-0 lg:border-r border-card-border p-5 pb-20 lg:pb-5 flex flex-col justify-between shrink-0 overflow-y-auto lg:max-h-none ${
+        <aside className={`w-full lg:w-64 bg-sidebar-bg text-sidebar-text border-b lg:border-b-0 lg:border-r border-sidebar-border p-5 pb-20 lg:pb-5 flex flex-col justify-between shrink-0 overflow-y-auto lg:max-h-none ${
           activeMobileTab === 'collaborators' ? 'flex flex-1 max-h-none' : 'hidden lg:flex'
         }`}>
           <div className="space-y-6">
             <div>
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-sidebar-muted uppercase tracking-wider mb-3 flex items-center gap-1.5">
                 <Users className="h-4 w-4" />
                 Collaborators
               </h3>
@@ -405,25 +405,25 @@ export default function DocumentWorkspace() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs py-1">
                   <div className="flex items-center gap-2">
-                    <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">
+                    <div className="h-6 w-6 rounded-full bg-slate-700 text-white flex items-center justify-center text-[10px] font-bold">
                       O
                     </div>
-                    <span className="font-semibold text-slate-700">Document Owner</span>
+                    <span className="font-semibold text-slate-200">Document Owner</span>
                   </div>
-                  <span className="text-[10px] text-slate-400 italic">owner</span>
+                  <span className="text-[10px] text-sidebar-muted italic">owner</span>
                 </div>
                 
                 {collaborators.map((c) => (
-                  <div key={c.user_id} className="flex items-center justify-between text-xs py-1 border-t border-slate-50 pt-1">
+                  <div key={c.user_id} className="flex items-center justify-between text-xs py-1 border-t border-slate-700/50 pt-1">
                     <div className="flex items-center gap-2 truncate">
-                      <div className="h-6 w-6 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-[10px] font-bold shrink-0">
+                      <div className="h-6 w-6 rounded-full bg-orange-500/10 text-orange-500 flex items-center justify-center text-[10px] font-bold shrink-0">
                         {c.name.charAt(0).toUpperCase()}
                       </div>
-                      <span className="font-medium text-slate-600 truncate" title={c.email}>
+                      <span className="font-medium text-slate-300 truncate" title={c.email}>
                         {c.name}
                       </span>
                     </div>
-                    <span className="text-[10px] text-slate-400 shrink-0">{c.role}</span>
+                    <span className="text-[10px] text-sidebar-muted shrink-0">{c.role}</span>
                   </div>
                 ))}
               </div>
@@ -431,8 +431,8 @@ export default function DocumentWorkspace() {
 
             {/* Invite Collaborator (Owners only) */}
             {role === 'owner' && navigator.onLine && (
-              <div className="border-t border-slate-100 pt-4">
-                <h4 className="text-xs font-bold text-slate-700 mb-2 flex items-center gap-1">
+              <div className="border-t border-slate-700/50 pt-4">
+                <h4 className="text-xs font-bold text-slate-200 mb-2 flex items-center gap-1">
                   <UserPlus className="h-3.5 w-3.5" />
                   Invite Collaborator
                 </h4>
@@ -442,7 +442,7 @@ export default function DocumentWorkspace() {
                     placeholder="user@example.com"
                     value={collabEmail}
                     onChange={(e) => setCollabEmail(e.target.value)}
-                    className="w-full px-2.5 py-1.5 text-xs border border-slate-300 rounded bg-transparent focus:ring-1 focus:ring-orange-500 focus:outline-none"
+                    className="w-full px-2.5 py-1.5 text-xs border border-sidebar-border rounded bg-slate-800/50 text-white focus:ring-1 focus:ring-orange-500 focus:outline-none"
                     disabled={collabLoading}
                     required
                   />
@@ -450,7 +450,7 @@ export default function DocumentWorkspace() {
                     <select
                       value={collabRole}
                       onChange={(e) => setCollabRole(e.target.value as 'editor' | 'viewer')}
-                      className="text-[10px] border border-slate-300 rounded px-1.5 bg-white text-slate-600 outline-none flex-1"
+                      className="text-[10px] border border-sidebar-border rounded px-1.5 bg-slate-800/80 text-slate-200 outline-none flex-1"
                     >
                       <option value="editor">Editor</option>
                       <option value="viewer">Viewer</option>
@@ -468,7 +468,7 @@ export default function DocumentWorkspace() {
             )}
           </div>
           
-          <div className="hidden lg:block text-[10px] text-slate-400 font-mono mt-8 border-t border-slate-100 pt-4">
+          <div className="hidden lg:block text-[10px] text-sidebar-muted font-mono mt-8 border-t border-slate-700/50 pt-4">
             Client ID: {clientId.substring(0, 12)}...
           </div>
         </aside>
@@ -499,17 +499,17 @@ export default function DocumentWorkspace() {
         </main>
 
         {/* Right Column: Tabbed controls for Versions and AI Assistant */}
-        <aside className={`w-full lg:w-80 bg-white/90 backdrop-blur-sm border-t lg:border-t-0 lg:border-l border-card-border flex flex-col overflow-hidden lg:max-h-none relative z-10 ${
+        <aside className={`w-full lg:w-80 bg-sidebar-bg text-sidebar-text border-t lg:border-t-0 lg:border-l border-sidebar-border flex flex-col overflow-hidden lg:max-h-none relative z-10 ${
           activeMobileTab === 'timeline' || activeMobileTab === 'ai' ? 'flex flex-1 max-h-none' : 'hidden lg:flex'
         }`}>
           {/* Tabs header */}
-          <div className="flex border-b border-card-border shrink-0 bg-slate-50">
+          <div className="flex border-b border-sidebar-border shrink-0 bg-slate-800/40">
             <button
               onClick={() => setRightPanelTab('versions')}
               className={`flex-1 py-3 text-xs font-semibold border-b-2 flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 rightPanelTab === 'versions'
-                  ? 'border-orange-500 text-orange-600 bg-white'
-                  : 'border-transparent text-slate-400 hover:text-slate-600'
+                  ? 'border-orange-500 text-orange-400 bg-slate-800/20'
+                  : 'border-transparent text-sidebar-muted hover:text-sidebar-text'
               }`}
             >
               <Clock className="h-4 w-4" />
@@ -519,8 +519,8 @@ export default function DocumentWorkspace() {
               onClick={() => setRightPanelTab('ai')}
               className={`flex-1 py-3 text-xs font-semibold border-b-2 flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 rightPanelTab === 'ai'
-                  ? 'border-orange-500 text-orange-600 bg-white'
-                  : 'border-transparent text-slate-400 hover:text-slate-600'
+                  ? 'border-orange-500 text-orange-400 bg-slate-800/20'
+                  : 'border-transparent text-sidebar-muted hover:text-sidebar-text'
               }`}
             >
               <Sparkles className="h-4 w-4" />
@@ -543,7 +543,7 @@ export default function DocumentWorkspace() {
               <div className="space-y-6">
                 {/* AI Summarizer */}
                 <div className="space-y-3">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  <label className="block text-xs font-bold text-sidebar-muted uppercase tracking-wider">
                     Document Summarizer
                   </label>
                   <button
@@ -560,32 +560,32 @@ export default function DocumentWorkspace() {
                   </button>
 
                   {summaryText && (
-                    <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs leading-relaxed text-slate-600 whitespace-pre-wrap select-text">
+                    <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 text-xs leading-relaxed text-slate-200 whitespace-pre-wrap select-text">
                       {summaryText}
                     </div>
                   )}
                 </div>
 
                 {/* AI Chat Assistant */}
-                <div className="space-y-3 border-t border-slate-100 pt-4 flex flex-col h-[280px]">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider shrink-0">
+                <div className="space-y-3 border-t border-slate-700/50 pt-4 flex flex-col h-[280px]">
+                  <label className="block text-xs font-bold text-sidebar-muted uppercase tracking-wider shrink-0">
                     Ask Gemini about Doc
                   </label>
                   
                   {/* Chat dialog logs */}
-                  <div className="flex-1 overflow-y-auto bg-slate-50 p-3 rounded-lg border border-slate-100 space-y-2 select-text">
+                  <div className="flex-1 overflow-y-auto bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 space-y-2 select-text">
                     {chatHistory.length === 0 ? (
-                      <div className="text-[10px] text-slate-400 text-center py-8">
+                      <div className="text-[10px] text-sidebar-muted text-center py-8">
                         Ask questions about the document formatting, contents, or topics.
                       </div>
                     ) : (
                       chatHistory.map((chat, idx) => (
                         <div key={idx} className={`text-xs p-2 rounded-lg ${
                           chat.sender === 'user'
-                            ? 'bg-orange-50 text-orange-700 text-right ml-6'
-                            : 'bg-white border border-card-border text-slate-700 mr-6'
+                            ? 'bg-orange-500/10 text-orange-400 text-right ml-6 border border-orange-500/20'
+                            : 'bg-slate-800 border border-slate-700 text-slate-200 mr-6'
                         }`}>
-                          <div className="font-semibold text-[9px] text-slate-400 mb-0.5 uppercase tracking-wide">
+                          <div className="font-semibold text-[9px] text-sidebar-muted mb-0.5 uppercase tracking-wide">
                             {chat.sender === 'user' ? 'You' : 'Gemini'}
                           </div>
                           <span className="whitespace-pre-wrap">{chat.text}</span>
@@ -600,7 +600,7 @@ export default function DocumentWorkspace() {
                       placeholder="Ask AI..."
                       value={chatMessage}
                       onChange={(e) => setChatMessage(e.target.value)}
-                      className="flex-1 px-3 py-2 text-xs border border-slate-300 rounded-lg bg-transparent focus:ring-1 focus:ring-orange-500 focus:outline-none"
+                      className="flex-1 px-3 py-2 text-xs border border-sidebar-border rounded-lg bg-slate-800/50 text-white focus:ring-1 focus:ring-orange-500 focus:outline-none"
                       disabled={aiWorking}
                       required
                     />

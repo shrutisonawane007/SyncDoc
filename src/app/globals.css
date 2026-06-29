@@ -1,16 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff; /* Pure White background */
-  --foreground: #0f172a;
+  --background: #F8F8F6;
+  --foreground: #1F2933;
   
-  --card-bg: rgba(243, 244, 246, 0.6); /* Soft Grey card background */
-  --card-border: rgba(229, 231, 235, 0.5); /* Neutral border */
-  --accent-color: #f97316; /* Orange */
-  --accent-hover: #ea580c;
+  --card-bg: #ffffff;
+  --card-border: #D7DAD6;
   
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --accent-color: #D8B46A;
+  --accent-hover: #c49f55;
+  
+  --glass-bg: rgba(248, 248, 246, 0.7);
+  --glass-border: rgba(215, 218, 214, 0.6);
+  
+  --sidebar-bg: #2E3A46;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-foreground: #F8F8F6;
+  --sidebar-muted: #94a3b8;
+  
+  --primary-btn: #4F6D5D;
+  --primary-btn-hover: #3d5548;
 }
 
 
@@ -23,6 +32,25 @@
   --color-accent-hover: var(--accent-hover);
   --color-glass-bg: var(--glass-bg);
   --color-glass-border: var(--glass-border);
+  
+  /* Sidebar custom colors */
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-text: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  
+  /* Primary Button custom colors */
+  --color-primary-btn: var(--primary-btn);
+  --color-primary-btn-hover: var(--primary-btn-hover);
+  
+  /* Remap the Tailwind orange palette to fit our palette */
+  --color-orange-50: #f1f4f2;
+  --color-orange-100: #e2e8e4;
+  --color-orange-200: #cbd7d0;
+  --color-orange-500: #D8B46A;
+  --color-orange-600: #4F6D5D;
+  --color-orange-700: #3d5548;
+  --color-orange-800: #2a3b32;
 }
 
 body {

@@ -149,7 +149,7 @@ export default function VersionHistory({
       {/* Create Snapshot Form */}
       {!isReadOnly && (
         <form onSubmit={handleCreateSnapshot} className="space-y-3">
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <label className="block text-xs font-bold text-sidebar-muted uppercase tracking-wider">
             Create Checkpoint
           </label>
           <div className="flex gap-2">
@@ -158,7 +158,7 @@ export default function VersionHistory({
               placeholder="e.g. V1 - Initial Draft"
               value={newVersionName}
               onChange={(e) => setNewVersionName(e.target.value)}
-              className="flex-1 px-3 py-2 text-xs border border-slate-300 rounded-lg bg-transparent focus:ring-1 focus:ring-orange-500 focus:outline-none"
+              className="flex-1 px-3 py-2 text-xs border border-sidebar-border rounded-lg bg-slate-800/50 text-white focus:ring-1 focus:ring-orange-500 focus:outline-none"
               disabled={saveLoading}
               required
             />
@@ -180,36 +180,36 @@ export default function VersionHistory({
       {/* Timeline List */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <label className="block text-xs font-bold text-sidebar-muted uppercase tracking-wider">
             Version Timeline
           </label>
           <button 
             onClick={fetchVersions}
-            className="p-1 hover:bg-slate-100 rounded transition-colors"
+            className="p-1 hover:bg-slate-800 rounded transition-colors"
             title="Refresh history"
           >
-            <RefreshCw className="h-3.5 w-3.5 text-slate-400" />
+            <RefreshCw className="h-3.5 w-3.5 text-sidebar-muted" />
           </button>
         </div>
 
         {loading && versions.length === 0 ? (
-          <div className="text-center py-6 text-xs text-slate-400">Loading timeline...</div>
+          <div className="text-center py-6 text-xs text-sidebar-muted">Loading timeline...</div>
         ) : versions.length === 0 ? (
-          <div className="text-center py-6 text-xs text-slate-400 border border-dashed border-slate-200 rounded-xl">
+          <div className="text-center py-6 text-xs text-sidebar-muted border border-dashed border-sidebar-border rounded-xl">
             No checkpoints saved yet.
           </div>
         ) : (
-          <div className="relative border-l border-slate-200 pl-4 ml-2 space-y-5">
+          <div className="relative border-l border-slate-700/50 pl-4 ml-2 space-y-5">
             {versions.map((ver) => (
               <div key={ver.id} className="relative group">
                 {/* Timeline node */}
-                <div className="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full bg-orange-500 border-2 border-white" />
+                <div className="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full bg-orange-500 border-2 border-sidebar-bg" />
                 
                 <div>
-                  <h4 className="text-xs font-bold text-slate-700 truncate">
+                  <h4 className="text-xs font-bold text-slate-200 truncate">
                     {ver.version_name}
                   </h4>
-                  <div className="flex items-center gap-1 mt-0.5 text-[10px] text-slate-400">
+                  <div className="flex items-center gap-1 mt-0.5 text-[10px] text-sidebar-muted">
                     <Clock className="h-3 w-3" />
                     <span>{new Date(ver.created_at).toLocaleString()}</span>
                   </div>
@@ -218,7 +218,7 @@ export default function VersionHistory({
                   <div className="flex gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => handlePreview(ver)}
-                      className="flex items-center gap-1 px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-semibold rounded transition-colors cursor-pointer"
+                      className="flex items-center gap-1 px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/30 text-[10px] font-semibold rounded transition-colors cursor-pointer"
                     >
                       <Eye className="h-3 w-3" />
                       Preview
@@ -227,7 +227,7 @@ export default function VersionHistory({
                     {!isReadOnly && (
                       <button
                         onClick={() => handleRestore(ver)}
-                        className="flex items-center gap-1 px-2 py-0.5 bg-orange-50 hover:bg-orange-100 text-orange-600 text-[10px] font-semibold rounded transition-colors cursor-pointer"
+                        className="flex items-center gap-1 px-2 py-0.5 bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 border border-orange-500/10 text-[10px] font-semibold rounded transition-colors cursor-pointer"
                       >
                         <CornerUpLeft className="h-3 w-3" />
                         Restore

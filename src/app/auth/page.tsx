@@ -69,28 +69,28 @@ export default function AuthPage() {
   return (
     <div className="flex-1 flex flex-col md:flex-row min-h-screen bg-background">
       {/* Visual branding side panel */}
-      <div className={`w-full md:w-1/2 bg-gradient-to-br from-orange-50/80 via-slate-50 to-orange-100/50 border-b md:border-b-0 md:border-r border-slate-200 p-8 sm:p-12 md:p-12 flex-col justify-between text-slate-900 relative overflow-hidden ${
+      <div className={`w-full md:w-1/2 bg-sidebar-bg border-b md:border-b-0 md:border-r border-sidebar-border p-8 sm:p-12 md:p-12 flex-col justify-between text-sidebar-text relative overflow-hidden ${
         mobileView === 'landing' ? 'flex min-h-screen md:min-h-0' : 'hidden md:flex'
       }`}>
-        {/* Simple ambient light orange gradient color background */}
+        {/* Ambient accent/gold gradient overlay for premium feel */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-orange-200/30 blur-3xl" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-orange-100/40 blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(249,115,22,0.02),transparent_40%)]" />
+          <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-orange-500/10 blur-3xl" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-orange-500/20 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(216,180,106,0.05),transparent_40%)]" />
         </div>
         
-        <div className="flex items-center gap-2 font-semibold text-lg tracking-wide z-10 text-slate-800 animate-slide-up opacity-0">
+        <div className="flex items-center gap-2 font-semibold text-lg tracking-wide z-10 text-slate-100 animate-slide-up opacity-0">
           <div className="bg-orange-600 text-white p-2 rounded-lg shadow-sm">
             <FileText className="h-5 w-5" />
           </div>
           <span>SyncDoc</span>
         </div>
 
-        <div className="my-auto max-w-md z-10 p-6 sm:p-8 glass-panel bg-white/80 rounded-3xl border border-white/80 shadow-xl space-y-6 animate-slide-up opacity-0 delay-1">
+        <div className="my-auto max-w-md z-10 p-6 sm:p-8 glass-panel rounded-3xl border border-card-border shadow-xl space-y-6 animate-slide-up opacity-0 delay-1">
           <h1 className="text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-slate-950">
             Write together.<br />Work anywhere.
           </h1>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
             SyncDoc is a smart document editor for modern teams. Keep writing even when your internet connection drops, and collaborate with your team without losing your work.
           </p>
 
@@ -99,25 +99,25 @@ export default function AuthPage() {
               <div className="bg-orange-50 p-1.5 rounded-lg shrink-0">
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </div>
-              <span className="text-slate-700 font-medium text-xs sm:text-sm">Work offline—never lose typed work when internet drops</span>
+              <span className="text-slate-800 font-medium text-xs sm:text-sm">Work offline—never lose typed work when internet drops</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="bg-orange-50 p-1.5 rounded-lg shrink-0">
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </div>
-              <span className="text-slate-700 font-medium text-xs sm:text-sm">Seamless collaborative editing without save conflicts</span>
+              <span className="text-slate-800 font-medium text-xs sm:text-sm">Seamless collaborative editing without save conflicts</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="bg-orange-50 p-1.5 rounded-lg shrink-0">
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </div>
-              <span className="text-slate-700 font-medium text-xs sm:text-sm">Look back at older drafts & restore them with one click</span>
+              <span className="text-slate-800 font-medium text-xs sm:text-sm">Look back at older drafts & restore them with one click</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="bg-orange-50 p-1.5 rounded-lg shrink-0">
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </div>
-              <span className="text-slate-700 font-medium text-xs sm:text-sm">Built-in AI helper to summarize and autocomplete text</span>
+              <span className="text-slate-800 font-medium text-xs sm:text-sm">Built-in AI helper to summarize and autocomplete text</span>
             </div>
           </div>
 
@@ -137,7 +137,7 @@ export default function AuthPage() {
                 setIsLogin(false);
                 setMobileView('auth');
               }}
-              className="w-full py-3 px-4 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-center text-sm transition-colors cursor-pointer"
+              className="w-full py-3 px-4 bg-white border border-card-border hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-center text-sm transition-colors cursor-pointer"
             >
               Create Account
             </button>
@@ -211,7 +211,7 @@ export default function AuthPage() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
+                      className="block w-full pl-10 pr-3 py-2.5 border border-card-border rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                       placeholder="John Doe"
                     />
                   </div>
@@ -233,7 +233,7 @@ export default function AuthPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-card-border rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -254,7 +254,7 @@ export default function AuthPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-card-border rounded-lg bg-transparent focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="••••••••"
                   />
                 </div>

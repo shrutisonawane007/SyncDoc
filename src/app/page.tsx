@@ -151,11 +151,11 @@ export default function Dashboard() {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-br from-orange-50/80 via-slate-50 to-orange-100/50 relative overflow-hidden">
-      {/* Simple ambient light orange gradient color background */}
+      {/* Simple ambient light orange/gold gradient color background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-orange-200/30 blur-3xl" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[450px] h-[450px] rounded-full bg-orange-100/40 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(249,115,22,0.02),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(216,180,106,0.02),transparent_40%)]" />
       </div>
       {/* Top Navbar */}
       <header className="sticky top-0 z-30 glass-panel border-b border-card-border px-6 py-4 flex items-center justify-between">
@@ -190,7 +190,7 @@ export default function Dashboard() {
           </div>
 
           {/* User Details */}
-          <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+          <div className="flex items-center gap-2 pl-2 border-l border-card-border">
             <div className="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-semibold text-sm">
               {user.name.charAt(0).toUpperCase()}
             </div>
@@ -221,7 +221,7 @@ export default function Dashboard() {
               placeholder="Enter document title... (e.g. Project Specs, Technical Design)"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className="flex-1 px-4 py-3 border border-slate-300 rounded-xl bg-transparent text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 focus:outline-none"
+              className="flex-1 px-4 py-3 border border-card-border rounded-xl bg-transparent text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 focus:outline-none"
               disabled={createLoading}
               required
             />
